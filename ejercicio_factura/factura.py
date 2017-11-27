@@ -2,6 +2,7 @@
 Created on 4 nov. 2017
 @author: Diego
 '''
+import csv
 import datetime as dt
 
 DIA = "dia"
@@ -35,11 +36,21 @@ def mostrarTicket(ticket):
 descuentos = {}
 descuentos[DIA] = [0.2,0.3,0,0,0,0,0] 
 descuentos[PROD] = {"A001": 0.25}
-productos = {}
+
+# antes inicializabamos el listado en forma manual ("hardcodeada")
+"""productos = {}
 productos["A001"]={"nombre":"yerba","precio":75, "codigo":"A001"}
 productos["A002"]={"nombre":"azucar","precio":25, "codigo":"A002"}
 productos["A003"]={"nombre":"agua","precio":15, "codigo":"A003"}
-productos["A004"]={"nombre":"pan","precio":35, "codigo" : "A004"}
+productos["A004"]={"nombre":"pan","precio":35, "codigo" : "A004"}"""
+
+# ahora usamos un archivo separado por comas...
+productos = {}
+productosFile = open('C:/Users/Diego/Documents/111mil/diegoromero/ejercicio_factura/lista.csv', mode='r', encoding="utf8", errors='ignore')
+reader = csv.reader(productosFile,delimiter=';')
+for rowProducto in reader:
+    productos[rowProducto[0]]={"nombre":rowProducto[1],"precio":int(rowProducto[2]), "codigo":rowProducto[0]}
+
 
 ticket = [[],[],[]]
 
