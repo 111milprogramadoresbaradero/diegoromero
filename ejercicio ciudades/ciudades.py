@@ -1,6 +1,6 @@
 import csv
 
-ciudadesFile = open('c:/temp/ciudades.csv', mode='r', encoding="utf8", errors='ignore')
+ciudadesFile = open('ciudades.csv', mode='r', encoding="utf8", errors='ignore')
 reader = csv.reader(ciudadesFile)
 contador = 0
 acumuladorPoblacion = 0
