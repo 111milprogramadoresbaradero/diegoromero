@@ -71,9 +71,8 @@ def venderButaca(fila, columna):
     vendida previamente. En caso de que la butaca este vendida levanta una excepcion"""
     if estaVendidaButaca(fila, columna):
         raise Exception("La butaca esta vendida")
-    else:
-        grabarVenta(fila, columna)
-        imprimirEntrada(fila, columna)
+    grabarVenta(fila, columna)
+    imprimirEntrada(fila, columna)
 
 def taquilla():
     continua = 'si'
