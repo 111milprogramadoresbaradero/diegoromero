@@ -8,7 +8,7 @@ import pandas as pd
 
 
 def leerPlanta():
-    planta = pd.DataFrame.from_csv("planta.csv", sep=",", index_col="fila")
+    planta = pd.DataFrame.from_csv("data/planta.csv", sep=",", index_col="fila")
     return planta
 
 def mostrarPlanta():
@@ -26,7 +26,7 @@ def grabarVenta(numeroFila,columna):
     fila = fila.copy()
     fila[columna]=1
     planta.ix[numeroFila]=fila    
-    planta.to_csv("planta.csv", sep=",")
+    planta.to_csv("data/planta.csv", sep=",")
 
 def imprimirEntrada(numeroFila,columna):
     print("Entrada para la Fila ",numeroFila," en la posicion ",columna)
@@ -92,5 +92,7 @@ def taquilla():
             print("La butaca Fila=",numeroFila," Columna=",columna," fue vendida previamente.")
         continua = input("continua? si/no")
     estadisticas()
-              
-taquilla()
+ 
+
+if __name__ == "__main__":
+    taquilla()
