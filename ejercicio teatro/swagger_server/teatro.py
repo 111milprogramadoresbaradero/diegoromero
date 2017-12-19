@@ -19,7 +19,6 @@ def mostrarPlanta():
     
 def grabarVenta(numeroFila,columna):
     # lo leo en cada grabacion, previendo nuevos requerimientos de uso concurrente
-    # falta implementar la validacion de butaca ocupada: uso concurrente
     planta = leerPlanta() 
     planta = planta.copy()
     fila = planta.ix[numeroFila]
@@ -28,6 +27,16 @@ def grabarVenta(numeroFila,columna):
     planta.ix[numeroFila]=fila    
     planta.to_csv("data/planta.csv", sep=",")
 
+def cancelarVenta(numeroFila,columna):
+    # lo leo en cada grabacion, previendo nuevos requerimientos de uso concurrente
+    planta = leerPlanta() 
+    planta = planta.copy()  
+    fila = planta.ix[numeroFila]
+    fila = fila.copy()
+    fila[columna]=0
+    planta.ix[numeroFila]=fila    
+    planta.to_csv("data/planta.csv", sep=",")
+    
 def imprimirEntrada(numeroFila,columna):
     print("Entrada para la Fila ",numeroFila," en la posicion ",columna)
     # implementar impresion en papell
@@ -72,6 +81,14 @@ def venderButaca(fila, columna):
     if estaVendidaButaca(fila, columna):
         raise Exception("La butaca esta vendida")
     grabarVenta(fila, columna)
+    imprimirEntrada(fila, columna)
+
+def cancelarButaca(fila, columna):
+    """Cancela la butaca correspondiente a la fila y la columna. Valida que haya sido
+    vendida previamente. En caso de que la butaca no este vendida levanta una excepcion"""
+    if not estaVendidaButaca(fila, columna):
+        raise Exception("La butaca no esta vendida")
+    cancelarVenta(fila, columna)
     imprimirEntrada(fila, columna)
 
 def taquilla():
