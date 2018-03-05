@@ -61,6 +61,76 @@ paths:
         400:
           description: "Invalid status value"
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /planta/cancelar:
+    get:
+      summary: "Cancela la butaca ubicada en columna y fila. Retorna -1 si la butaca\
+        \ no pudo ser cancelada y 0 en caso de que se haya cancelado"
+      operationId: "planta_cancelar"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "fila"
+        in: "query"
+        description: "Numero de la fila a cancelar"
+        required: true
+        type: "integer"
+      - name: "columna"
+        in: "query"
+        description: "Columna a cancelar"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "integer"
+        400:
+          description: "Invalid status value"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /menu:
+    get:
+      summary: "Retorna un menu de opciones para el usuario"
+      operationId: "menu_get"
+      produces:
+      - "text/html"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "integer"
+        400:
+          description: "Invalid status value"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /leer:
+    get:
+      summary: "Lee toda la planta y retorna un html"
+      operationId: "leer_get"
+      produces:
+      - "text/html"
+      parameters:
+      - name: "accion"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "fila"
+        in: "query"
+        description: "Numero de la fila a cancelar"
+        required: false
+        type: "integer"
+      - name: "columna"
+        in: "query"
+        description: "Columna a cancelar"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "integer"
+        400:
+          description: "Invalid status value"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
 definitions:
   Butaca:
     type: "object"
